@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Profil Busu Menasah Mee Lueng Bintang</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --hijau:#1a5c38;--hijau-muda:#2d8a56;--hijau-terang:#4caf78;--emas:#c9a227;--emas-muda:#f0c94a;
+  --krem:#fdf8ef;--putih:#ffffff;--abu:#6b7280;--abu-gelap:#374151;--teks:#1f2937;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--krem);color:var(--teks);min-height:100vh;overflow-x:hidden}
+
+/* NAV */
+nav{background:var(--hijau);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.25)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;max-width:1100px;margin:0 auto}
+.nav-brand{display:flex;align-items:center;gap:12px;padding:14px 0;cursor:pointer}
+.nav-logo{width:44px;height:44px;background:var(--emas);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-family:'Playfair Display',serif;font-weight:700;color:var(--hijau)}
+.nav-title{color:white;font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;line-height:1.2}
+.nav-title span{display:block;font-size:0.72rem;font-weight:300;opacity:0.8;font-family:'DM Sans',sans-serif}
+.nav-menu{display:flex;gap:0}
+.nav-item{color:rgba(255,255,255,0.85);padding:18px 14px;font-size:0.82rem;font-weight:500;cursor:pointer;transition:all 0.2s;border-bottom:3px solid transparent;letter-spacing:0.01em}
+.nav-item:hover{color:white;background:rgba(255,255,255,0.08)}
+.nav-item.active{color:var(--emas-muda);border-bottom:3px solid var(--emas-muda);background:rgba(255,255,255,0.08)}
+
+/* PAGES */
+.page{display:none;min-height:calc(100vh - 78px);animation:fadeIn 0.4s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* HERO */
+.hero{position:relative;height:480px;overflow:hidden;background:linear-gradient(135deg,#0f3d22 0%,#1a5c38 50%,#2d8a56 100%)}
+.hero-pattern{position:absolute;inset:0;opacity:0.07;background-image:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);background-size:20px 20px}
+.hero-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem}
+.hero-badge{display:inline-block;background:var(--emas);color:var(--hijau);padding:5px 18px;border-radius:20px;font-size:0.78rem;font-weight:600;letter-spacing:0.05em;margin-bottom:1rem;text-transform:uppercase}
+.hero-title{font-family:'Playfair Display',serif;font-size:3rem;color:white;font-weight:700;line-height:1.15;margin-bottom:0.75rem}
+.hero-subtitle{color:rgba(255,255,255,0.75);font-size:1.05rem;margin-bottom:2rem;max-width:500px}
+.hero-stats{display:flex;gap:2.5rem}
+.hero-stat{text-align:center}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--emas-muda)}
+.hero-stat-lbl{font-size:0.75rem;color:rgba(255,255,255,0.7);margin-top:2px}
+
+/* SECTION */
+.section{max-width:1100px;margin:0 auto;padding:3rem 2rem}
+.section-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.8rem}
+.section-title{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--hijau);font-weight:700}
+.section-line{flex:1;height:2px;background:linear-gradient(to right,var(--hijau-terang),transparent)}
+
+/* PHOTO GRID */
+.photo-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 180px;gap:10px;border-radius:16px;overflow:hidden}
+.photo-card{background:var(--hijau-muda);position:relative;overflow:hidden;cursor:pointer}
+.photo-card:first-child{grid-row:span 2}
+.photo-card:hover .photo-placeholder{transform:scale(1.04)}
+.photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);gap:6px;font-size:0.82rem;transition:transform 0.4s}
+.photo-icon{font-size:2rem}
+.photo-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.65));color:white;padding:1rem 0.8rem 0.6rem;font-size:0.78rem;font-weight:500}
+
+/* MENU GRID */
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:2rem}
+.menu-card{background:var(--putih);border-radius:14px;padding:1.5rem 1.2rem;text-align:center;cursor:pointer;transition:all 0.25s;border:1.5px solid transparent;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.menu-card:hover{border-color:var(--hijau-terang);transform:translateY(-4px);box-shadow:0 8px 24px rgba(26,92,56,0.15)}
+.menu-icon{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--hijau),var(--hijau-muda));display:flex;align-items:center;justify-content:center;margin:0 auto 0.9rem;font-size:1.4rem}
+.menu-name{font-size:0.88rem;font-weight:500;color:var(--abu-gelap)}
+.menu-desc{font-size:0.74rem;color:var(--abu);margin-top:3px}
+
+/* KEGIATAN STRIP (DASHBOARD) */
+.kegiatan-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.kegiatan-card{background:var(--putih);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform 0.2s;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+.kegiatan-card:hover{transform:translateY(-3px)}
+.kegiatan-img{height:130px;display:flex;align-items:center;justify-content:center;font-size:2rem}
+.kegiatan-body{padding:0.9rem}
+.kegiatan-tag{font-size:0.7rem;color:var(--hijau-muda);font-weight:600;text-transform:uppercase;letter-spacing:0.04em}
+.kegiatan-title{font-size:0.88rem;font-weight:500;margin-top:4px;color:var(--teks);line-height:1.4}
+.kegiatan-date{font-size:0.72rem;color:var(--abu);margin-top:6px}
+
+/* BADGE */
+.badge{display:inline-block;font-size:0.68rem;font-weight:600;padding:3px 10px;border-radius:20px;margin-top:6px;letter-spacing:0.03em}
+.badge-selesai{background:#e8f5e9;color:#1a5c38}
+.badge-berlangsung{background:#fff8e1;color:#c9a227}
+.badge-akan{background:#e3f2fd;color:#1565c0}
+
+/* PAGE HERO */
+.page-hero{background:linear-gradient(135deg,var(--hijau) 0%,var(--hijau-muda) 100%);padding:3rem 2rem;text-align:center;color:white}
+.page-hero-icon{font-size:3rem;margin-bottom:0.8rem}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:2.2rem;margin-bottom:0.5rem}
+.page-hero p{opacity:0.8;font-size:0.95rem}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:0.78rem;color:rgba(255,255,255,0.7);justify-content:center;margin-top:0.7rem}
+.breadcrumb span{cursor:pointer;transition:color 0.2s}
+.breadcrumb span:hover{color:white}
+
+/* CONTENT */
+.content-wrap{max-width:900px;margin:0 auto;padding:2.5rem 2rem}
+.content-card{background:white;border-radius:16px;padding:2rem;box-shadow:0 2px 12px rgba(0,0,0,0.07);margin-bottom:1.5rem}
+.content-card h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--hijau);margin-bottom:1rem;padding-bottom:0.7rem;border-bottom:2px solid var(--krem)}
+.content-card p{line-height:1.85;color:var(--abu-gelap);font-size:0.95rem;margin-bottom:0.9rem}
+.content-card p:last-child{margin-bottom:0}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:linear-gradient(var(--hijau-terang),var(--emas))}
+.timeline-item{position:relative;margin-bottom:1.8rem}
+.timeline-dot{position:absolute;left:-2rem;top:4px;width:18px;height:18px;border-radius:50%;background:var(--hijau);border:3px solid var(--krem);box-shadow:0 0 0 2px var(--hijau)}
+.timeline-year{font-size:0.78rem;font-weight:600;color:var(--hijau-muda);letter-spacing:0.04em;margin-bottom:3px}
+.timeline-text{font-size:0.92rem;line-height:1.7;color:var(--abu-gelap)}
+
+/* PERANGKAT */
+.perangkat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.perangkat-card{background:white;border-radius:12px;padding:1.4rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-top:3px solid var(--hijau-terang)}
+.perangkat-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--hijau),var(--hijau-muda));display:flex;align-items:center;justify-content:center;margin:0 auto 0.8rem;font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:white}
+.perangkat-name{font-size:0.95rem;font-weight:600;color:var(--teks)}
+.perangkat-jabatan{font-size:0.78rem;color:var(--hijau-muda);margin-top:3px;font-weight:500}
+.perangkat-nip{font-size:0.72rem;color:var(--abu);margin-top:4px}
+
+/* VISI MISI */
+.visi-box{background:linear-gradient(135deg,var(--hijau),var(--hijau-muda));border-radius:16px;padding:2rem;color:white;margin-bottom:1.5rem;text-align:center}
+.visi-box h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:0.8rem;color:var(--emas-muda)}
+.visi-box p{line-height:1.8;font-size:0.95rem;opacity:0.92}
+.misi-list{list-style:none}
+.misi-item{display:flex;gap:12px;padding:0.9rem 0;border-bottom:1px solid var(--krem);align-items:flex-start}
+.misi-item:last-child{border-bottom:none}
+.misi-num{width:28px;height:28px;border-radius:50%;background:var(--hijau);color:white;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:600;flex-shrink:0;margin-top:2px}
+.misi-text{font-size:0.92rem;line-height:1.7;color:var(--abu-gelap)}
+
+/* STATISTIK */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.stat-card{background:white;border-radius:12px;padding:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);text-align:center}
+.stat-icon{font-size:2rem;margin-bottom:0.6rem}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--hijau)}
+.stat-lbl{font-size:0.8rem;color:var(--abu);margin-top:4px}
+.progress-bar{height:6px;background:#e5e7eb;border-radius:3px;margin-top:0.6rem;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(to right,var(--hijau-terang),var(--hijau-muda));border-radius:3px}
+
+/* KEGIATAN PAGE */
+.filter-bar{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap}
+.filter-btn{padding:6px 16px;border-radius:20px;border:1.5px solid var(--hijau-terang);background:white;color:var(--hijau);font-size:0.8rem;font-weight:500;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif}
+.filter-btn:hover,.filter-btn.active{background:var(--hijau);color:white;border-color:var(--hijau)}
+.kegiatan-list-item{display:flex;gap:1.2rem;align-items:flex-start;padding:1.4rem;border-bottom:1px solid var(--krem);cursor:pointer;transition:background 0.15s;border-radius:10px}
+.kegiatan-list-item:last-child{border-bottom:none}
+.kegiatan-list-item:hover{background:var(--krem)}
+.kegiatan-thumb{width:90px;height:90px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;flex-shrink:0}
+.kegiatan-meta{font-size:0.72rem;color:var(--hijau-muda);font-weight:600;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px}
+.kegiatan-judul{font-size:0.98rem;font-weight:600;color:var(--teks);margin-bottom:5px;line-height:1.4}
+.kegiatan-desc{font-size:0.83rem;color:var(--abu);line-height:1.6}
+
+/* KONTAK */
+.kontak-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.kontak-item{display:flex;gap:14px;align-items:flex-start;padding:1.2rem;background:var(--krem);border-radius:10px}
+.kontak-icon{width:42px;height:42px;border-radius:10px;background:var(--hijau);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.kontak-lbl{font-size:0.78rem;color:var(--abu);font-weight:500}
+.kontak-val{font-size:0.92rem;color:var(--teks);margin-top:3px;font-weight:500}
+.map-placeholder{background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:12px;height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--hijau);font-size:0.9rem;border:2px dashed var(--hijau-terang);margin-top:1.2rem}
+
+/* FOOTER */
+footer{background:var(--hijau);color:rgba(255,255,255,0.8);text-align:center;padding:1.8rem;font-size:0.82rem}
+footer strong{color:var(--emas-muda)}
+
+
+.photo-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 0.4s;
+}
+.photo-card:hover .photo-img{
+  transform:scale(1.05);
+}
+
+.foto-kegiatan {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.foto-kegiatan:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+.logo img {
+  height: 50px;
+  transition: 0.3s;
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;   /* ini kunci biar bulat */
+  object-fit: cover;    /* biar gambar tidak ketarik */
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+.logo img {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.map iframe {
+  border-radius: 12px;
+}
+
+.map iframe {
+  height:400px;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand" onclick="showPage('dashboard')">
+      <div class="logo">
+  <img src="images/menasah.jpeg" alt="Logo Desa Reului Busu">
+</div>
+      <div class="nav-title">DESA REULUI BUSU<span>Kecamatan Mutiara · Pidie</span></div>
+    </div>
+    <div class="nav-menu">
+      <div class="nav-item active" onclick="showPage('dashboard')">🏠 Beranda</div>
+      <div class="nav-item" onclick="showPage('sejarah')">📜 Sejarah</div>
+      <div class="nav-item" onclick="showPage('perangkat')">👥 Perangkat</div>
+      <div class="nav-item" onclick="showPage('visimisi')">🎯 Visi & Misi</div>
+      <div class="nav-item" onclick="showPage('statistik')">📊 Statistik</div>
+      <div class="nav-item" onclick="showPage('kegiatan')">🎪 Kegiatan</div>
+      <div class="nav-item" onclick="showPage('kontak')">📍 Kontak</div>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== DASHBOARD ========== -->
+<div class="page active" id="page-dashboard">
+  <div class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-badge">✦ Selamat Datang Di ✦</div>
+      <div class="hero-title">DESA REULUI BUSU</div>
+      <div class="hero-subtitle">Desa yang memegang tenguh hukum adat, Dan masih menjaga adat leluhur di Kecamatan Mutiara, Kabupaten Pidie</div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">673</div><div class="hero-stat-lbl">Jiwa Penduduk</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">204</div><div class="hero-stat-lbl">KK</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-lbl">Dusun</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">1,30 km²</div><div class="hero-stat-lbl">Luas Wilayah</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Galeri Desa</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="photo-grid">
+<div class="photo-card">
+  <img src="images/kantor.jpeg" class="photo-img">
+  <div class="photo-label">Kantor Desa Busu Reului</div>
+</div>
+      <div class="photo-card">
+  <img src="images/sawah.jpg" class="photo-img">
+  <div class="photo-label">Area Persawahan Menasah Mee</div>
+</div>
+      <div class="photo-card">
+  <img src="images/gotongroyong.jpeg" class="photo-img">
+  <div class="photo-label">Kegiatan Gotong Royong Di Salah Satu Dusun</div>
+</div>
+      <div class="photo-card">
+  <img src="images/kegiatan.jpg" class="photo-img">
+  <div class="photo-label">Kegiatan Para Ibuk-Ibuk Di Salah Satu Dusun Kawasan busu</div>
+</div>
+      <div class="photo-card">
+  <img src="images/menasah.jpeg" class="photo-img">
+  <div class="photo-label">Menasah Mee Lueng Bintang Salah Satu Dusun Di Busu</div>
+</div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0">
+    <div class="section-header">
+      <div class="section-title">Menu Layanan</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card" onclick="showPage('sejarah')">
+        <div class="menu-icon">📜</div>
+        <div class="menu-name">Sejarah Busu</div>
+        <div class="menu-desc">Asal-usul & perjalanan</div>
+      </div>
+      <div class="menu-card" onclick="showPage('perangkat')">
+        <div class="menu-icon">👥</div>
+        <div class="menu-name">Perangkat Desa</div>
+        <div class="menu-desc">Struktur pemerintahan</div>
+      </div>
+      <div class="menu-card" onclick="showPage('visimisi')">
+        <div class="menu-icon">🎯</div>
+        <div class="menu-name">Adat & Istiadat Di Busu</div>
+        <div class="menu-desc">Tujuan & program desa</div>
+      </div>
+      <div class="menu-card" onclick="showPage('statistik')">
+        <div class="menu-icon">📊</div>
+        <div class="menu-name">Statistik</div>
+        <div class="menu-desc">Data kependudukan</div>
+      </div>
+      <div class="menu-card" onclick="showPage('kegiatan')">
+        <div class="menu-icon">🎪</div>
+        <div class="menu-name">Kegiatan Desa</div>
+        <div class="menu-desc">Aktivitas & agenda desa</div>
+      </div>
+      <div class="menu-card" onclick="showPage('kontak')">
+        <div class="menu-icon">📍</div>
+        <div class="menu-name">Kontak & Lokasi</div>
+        <div class="menu-desc">Alamat & hubungi kami</div>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+
+<!-- ========== SEJARAH ========== -->
+<div class="page" id="page-sejarah">
+  <div class="page-hero">
+    <div class="page-hero-icon">📜</div>
+    <h1>Sejarah Busu</h1>
+    <p>Perjalanan panjang Busu dari masa ke masa</p>
+    <div class="breadcrumb"><span onclick="showPage('dashboard')">Beranda</span> › <span>Sejarah Busu</span></div>
+  </div>
+  <div class="content-wrap">
+    <div class="content-card">
+      <h2>Asal-usul BUSU</h2>
+      <p>Busu merupakan salah satu kawasan (kemukiman) yang terdiri dari beberapa desa (gampong) di Kecamatan Mutiara, Kabupaten Pidie, Aceh.</p>
+      <p>Ada dua versi tentang asal-usul Busu yaitu:</p>
+      <p><h1>Versi Pertama:</h1> Secara etimologi dan sejarah lisan, asal-usul nama Busu memiliki beberapa versi:
+Berkaitan dengan Kata "Bungsu": Dalam beberapa cerita lisan masyarakat setempat, nama Busu diyakini berasal dari kata bungsu. Konon, kawasan ini dibuka atau didiami pertama kali oleh seorang anak bungsu dari sebuah keluarga terpandang atau keturunan raja/bangsawan pada masanya.</p>
+
+      <p><h1>Versi Kedua:</h1> Dalam beberapa sumber sejarah lokal, Berdasarkan penelusuran sejarah dan budaya, asal-usul nama desa (gampong) Busu di Kecamatan Mutiara, Kabupaten Pidie, Aceh, berkaitan erat dengan keberadaan seorang tokoh penyiar agama Islam yang dikenal sebagai Syarif Ahmad Busu. 
+Berikut adalah poin-poin penting mengenai asal-usul nama dan sejarah Busu:</p>
+<p><strong>Asal Nama:</strong> Nama <strong>"Busu"</strong> diambil dari nama seorang tokoh ulama pendakwah bernama Syarif Ahmad bin Muhammad bin Ali, yang lebih dikenal sebagai Syarif Ahmad Busu.</p>
+<p><strong>Pusat Dakwah:</strong> Busu dahulu merupakan pusat dakwah yang signifikan, ditandai dengan adanya lembaga pendidikan bernama Busu Dayah Syarif di Kecamatan Mutiara Saat ini, warisan pendidikan tersebut berlanjut melalui lembaga seperti Yayasan Dayah Thauthiatul Abraar Busu di Gampong Reului Busu, yang mengelola pendidikan formal mulai dari tingkat menengah (SMA)., Pidie.</p>
+<p><strong>Keturunan:</strong> Keturunan dari Syarif Ahmad Busu tersebar luas, tidak hanya di Pidie dan wilayah Aceh lainnya, tetapi juga hingga ke Malaysia dan Singapura.</p>
+      <p>Kedua versi ini mencerminkan bagaimana masyarakat setempat memahami dan menginterpretasikan asal-usul nama Busu berdasarkan cerita lisan.</p>
+    </div>
+    <div class="content-card">
+      <h2>Garis Waktu Sejarah</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">Abad ke-18</div>
+          <div class="timeline-text">Awal mula penduduk pertama kali menetap di kawasan ini.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1970</div>
+          <div class="timeline-text">Pembangunan sekolah dasar pertama di Busu yaitu SDN 1 Busu.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1980</div>
+          <div class="timeline-text">Konflik antara AM dan Indonesia, dan busu menjadi salah satu daerah yang terdampak konflik.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1990-an</div>
+          <div class="timeline-text">Program listrik masuk desa berhasil menerangi seluruh wilayah Busu.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2005</div>
+          <div class="timeline-text">Akhir konflik, Busu mulai membangun kembali infrastruktur dan perekonomian.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2024</div>
+          <div class="timeline-text">Busu memasuki era digital .</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PERANGKAT ========== -->
+<div class="page" id="page-perangkat">
+  <div class="page-hero">
+    <div class="page-hero-icon">👥</div>
+    <h1>Perangkat Desa</h1>
+    <p>Struktur pemerintahan Desa Sukamaju periode 2020–2026</p>
+    <div class="breadcrumb"><span onclick="showPage('dashboard')">Beranda</span> › <span>Perangkat Desa</span></div>
+  </div>
+  <div class="content-wrap">
+    <div class="content-card">
+      <h2>KEUCHIK & DUSUN</h2>
+      <div class="perangkat-grid">
+        <div class="perangkat-card" style="border-top-color:var(--emas)">
+          <div class="perangkat-avatar" style="background:linear-gradient(135deg,var(--emas),#e8b800)">A</div>
+          <div class="perangkat-name">Agussani</div>
+          <div class="perangkat-jabatan">KEUCHIK</div>
+          <div class="perangkat-nip">Periode 2020–2026</div>
+        </div>
+        <div class="perangkat-card">
+          <div class="perangkat-avatar">AG</div>
+          <div class="perangkat-name">Arif Gunawan</div>
+          <div class="perangkat-jabatan">DUSUN</div>
+          <div class="perangkat-nip">NIP. 19800412 200501 2 003</div>
+        </div>
+        
+        
+      </div>
+    </div>
+    <div class="content-card">
+      <h2>TUHA 4</h2>
+      <div class="perangkat-grid">
+        <div class="perangkat-card">
+          <div class="perangkat-avatar">S</div>
+          <div class="perangkat-name">Sanusi </div>
+          <div class="perangkat-jabatan">TUHA 4 DUSUN</div>
+        
+        </div>
+        <div class="perangkat-card">
+          <div class="perangkat-avatar">S</div>
+          <div class="perangkat-name">SUKMA</div>
+          <div class="perangkat-jabatan">TUHA 4 DUSUN</div>
+
+        </div>
+        
+      </div>
+    </div>
+    <div class="content-card">
+      <h2>TUHA 8</h2>
+      <div class="perangkat-grid">
+        <div class="perangkat-card"><div class="perangkat-avatar">S</div><div class="perangkat-name">Selamat</div><div class="perangkat-jabatan">TUHA 8 DUSUN</div></div>
+        <div class="perangkat-card"><div class="perangkat-avatar">TF</div><div class="perangkat-name">tgk.fahmi</div><div class="perangkat-jabatan">TUHA 8 DUSUN</div></div>
+        <div class="perangkat-card"><div class="perangkat-avatar">R</div><div class="perangkat-name">Ridwan</div><div class="perangkat-jabatan">TUHA 8 DUSUN</div></div>
+        <div class="perangkat-card"><div class="perangkat-avatar">R</div><div class="perangkat-name">Rahmat</div><div class="perangkat-jabatan">TUHA 8 DUSUN</div></div>
+        <div class="perangkat-card"><div class="perangkat-avatar">MJ</div><div class="perangkat-name">M.jamil</div><div class="perangkat-jabatan">TUHA 8 DUSUN</div></div>
+        <div class="perangkat-card"><div class="perangkat-avatar">R</div><div class="perangkat-name">Ruslan</div><div class="perangkat-jabatan">TUHA 8 DUSUN</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== VISI MISI ========== -->
+<div class="page" id="page-visimisi">
+  <div class="page-hero">
+    <div class="page-hero-icon">🎯</div>
+    <h1>Visi & Misi</h1>
+    <p>Arah dan tujuan pembangunan Desa Reului Busu</p>
+    <div class="breadcrumb"><span onclick="showPage('dashboard')">Beranda</span> › <span>Visi & Misi</span></div>
+  </div>
+  <div class="content-wrap">
+    <div class="visi-box">
+      <h3>✦ Visi Desa ✦</h3>
+      <p>"Terwujudnya Desa Reului Busu yang Maju, Mandiri, Sejahtera, dan Berkeadilan Berlandaskan Nilai-nilai Gotong Royong pada Tahun 2026"</p>
+    </div>
+    <div class="content-card">
+      <h2>Misi Desa</h2>
+      <ul class="misi-list">
+        <li class="misi-item"><div class="misi-num">1</div><div class="misi-text">Meningkatkan kualitas sumber daya manusia melalui pendidikan, kesehatan, dan pemberdayaan masyarakat yang berkelanjutan.</div></li>
+        <li class="misi-item"><div class="misi-num">2</div><div class="misi-text">Mengembangkan perekonomian desa berbasis potensi lokal seperti pertanian, UMKM, dan pariwisata pedesaan yang ramah lingkungan.</div></li>
+        <li class="misi-item"><div class="misi-num">3</div><div class="misi-text">Meningkatkan infrastruktur dasar desa meliputi jalan, irigasi, sanitasi, dan fasilitas umum yang merata di seluruh wilayah desa.</div></li>
+        <li class="misi-item"><div class="misi-num">4</div><div class="misi-text">Mewujudkan tata kelola pemerintahan desa yang transparan, akuntabel, dan partisipatif demi kepercayaan masyarakat.</div></li>
+        <li class="misi-item"><div class="misi-num">5</div><div class="misi-text">Memperkuat kehidupan sosial budaya masyarakat dengan menjaga nilai-nilai kearifan lokal, toleransi, dan semangat gotong royong.</div></li>
+        <li class="misi-item"><div class="misi-num">6</div><div class="misi-text">Memanfaatkan teknologi informasi untuk meningkatkan pelayanan publik dan memajukan potensi desa di era digital.</div></li>
+      </ul>
+    </div>
+  </div>  
+</div>
+
+<!-- ========== STATISTIK ========== -->
+<div class="page" id="page-statistik">
+  <div class="page-hero">
+    <div class="page-hero-icon">📊</div>
+    <h1>Statistik Desa</h1>
+    <p>Data kependudukan dan profil wilayah Reului Busu</p>
+    <div class="breadcrumb"><span onclick="showPage('dashboard')">Beranda</span> › <span>Statistik</span></div>
+  </div>
+  <div class="content-wrap">
+    <div class="content-card">
+      <h2>Ringkasan Kependudukan</h2>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-icon">👨‍👩‍👧‍👦</div><div class="stat-num">673</div><div class="stat-lbl">Total Penduduk</div></div>
+        <div class="stat-card"><div class="stat-icon">🏠</div><div class="stat-num">204</div><div class="stat-lbl">Kepala Keluarga</div></div>
+        <div class="stat-card"><div class="stat-icon">👨</div><div class="stat-num">310</div><div class="stat-lbl">Laki-laki</div></div>
+        <div class="stat-card"><div class="stat-icon">👩</div><div class="stat-num">363</div><div class="stat-lbl">Perempuan</div></div>
+      </div>
+    </div>
+    <div class="content-card">
+      <h2>Mata Pencaharian</h2>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div><div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:5px"><span>Petani / Buruh Tani</span><span style="font-weight:600;color:var(--hijau)">42%</span></div><div class="progress-bar"><div class="progress-fill" style="width:42%"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:5px"><span>Wiraswasta / UMKM</span><span style="font-weight:600;color:var(--hijau)">25%</span></div><div class="progress-bar"><div class="progress-fill" style="width:25%"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:5px"><span>Karyawan Swasta</span><span style="font-weight:600;color:var(--hijau)">18%</span></div><div class="progress-bar"><div class="progress-fill" style="width:18%"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:5px"><span>PNS / TNI / Polri</span><span style="font-weight:600;color:var(--hijau)">8%</span></div><div class="progress-bar"><div class="progress-fill" style="width:8%"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:5px"><span>Lainnya</span><span style="font-weight:600;color:var(--hijau)">7%</span></div><div class="progress-bar"><div class="progress-fill" style="width:7%"></div></div></div>
+      </div>
+    </div>
+    <div class="content-card">
+      <h2>Tingkat Pendidikan</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div style="text-align:center;padding:1rem;background:var(--krem);border-radius:10px"><div style="font-size:1.6rem;font-weight:700;color:var(--hijau);font-family:'Playfair Display',serif">38%</div><div style="font-size:0.78rem;color:var(--abu);margin-top:4px">SD / Sederajat</div></div>
+        <div style="text-align:center;padding:1rem;background:var(--krem);border-radius:10px"><div style="font-size:1.6rem;font-weight:700;color:var(--hijau);font-family:'Playfair Display',serif">29%</div><div style="font-size:0.78rem;color:var(--abu);margin-top:4px">SMP / Sederajat</div></div>
+        <div style="text-align:center;padding:1rem;background:var(--krem);border-radius:10px"><div style="font-size:1.6rem;font-weight:700;color:var(--hijau);font-family:'Playfair Display',serif">24%</div><div style="font-size:0.78rem;color:var(--abu);margin-top:4px">SMA / Sederajat</div></div>
+        <div style="text-align:center;padding:1rem;background:var(--krem);border-radius:10px"><div style="font-size:1.6rem;font-weight:700;color:var(--emas);font-family:'Playfair Display',serif">7%</div><div style="font-size:0.78rem;color:var(--abu);margin-top:4px">D3 / S1 / S2</div></div>
+        <div style="text-align:center;padding:1rem;background:var(--krem);border-radius:10px"><div style="font-size:1.6rem;font-weight:700;color:var(--hijau-muda);font-family:'Playfair Display',serif">2%</div><div style="font-size:0.78rem;color:var(--abu);margin-top:4px">Tidak Sekolah</div></div>
+        <div style="text-align:center;padding:1rem;background:var(--krem);border-radius:10px"><div style="font-size:1.6rem;font-weight:700;color:var(--hijau);font-family:'Playfair Display',serif">98%</div><div style="font-size:0.78rem;color:var(--abu);margin-top:4px">Melek Huruf</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== KEGIATAN ========== -->
+<div class="page" id="page-kegiatan">
+  <div class="page-hero">
+    <div class="page-hero-icon">🎪</div>
+    <h1>Kegiatan Desa</h1>
+    <p>Aktivitas dan dokumentasi kegiatan Desa Sukamaju</p>
+    <div class="breadcrumb"><span onclick="showPage('dashboard')">Beranda</span> › <span>Kegiatan</span></div>
+  </div>
+  <div class="content-wrap">
+    <div class="content-card">
+      <h2>Semua Kegiatan</h2>
+
+      <div id="kegiatanList">
+
+  <div class="kegiatan-card">
+  <img src="img/membantu.jpeg" alt="Panen Raya" class="foto-kegiatan">
+  <small>📅 15 April 2026 · Dusun Mee Lueng Bintang</small>
+  
+  <h3>Membantu Acara Pesta pernikahan </h3>
+  
+  <p>
+    Kegiatan ini sudah menjadi hal yang lumrah di lakukan di busu, 
+    tidak hanya wanita saja para laki-laki juga ikut serta dalam kegiatan ini biasanya para masyarakat akan membagi tugas masing-masing
+     misalnya para anak gadis akan membantu di dalam rumah dan para laki-laki akan membantu di luar rumah.
+      Ini adalah salah satu bentuk kebersamaan yang kuat di antara warga desa .
+  </p>
+</div>
+
+<div class="kegiatan-card">
+  <img src="img/penyerahan.jpeg" alt="Panen Raya" class="foto-kegiatan">
+  <small>📅 11 Desember 2025 · Teupin Mane.</small>
+  
+  <h3>Penyerahan Bantuan Untuk Korban Banjir Bandang 2025</h3>
+  
+  <p>
+    Kegiatan penyerahan bantuan untuk korban banjir bandang 2025 ini dilaksanakan dengan kerjasama 
+    antara perangkat desa dan masyarakat yang di tempat maupun yang merantau.
+     Bantuan yang diserahkan meliputi kebutuhan pokok, pakaian, dan kebutuhan lainnya.
+  </p>
+</div>
+
+<div class="kegiatan-card">
+  <img src="img/penyerahan.jpeg" alt="Panen Raya" class="foto-kegiatan">
+  <small>📅 11 Desember 2025 · Teupin Mane.</small>
+  
+  <h3>Dokumentasi Penyerahan Bantuan Untuk Korban Banjir Bandang 2025</h3>
+  
+  <p>
+   Dokumentasi ini bertujuan untuk memberikan transparansi kepada masyarakat tentang bantuan yang telah disalurkan serta sebagai bentuk pertanggungjawaban kepada para donatur yang telah memberikan bantuan untuk korban banjir bandang 2025. Dokumentasi ini juga dapat digunakan sebagai bahan evaluasi untuk meningkatkan efektivitas penyaluran bantuan di masa yang akan datang.
+  </p>
+</div>
+
+<div class="kegiatan-card">
+  <img src="img/apam.jpeg" alt="Panen Raya" class="foto-kegiatan">
+  <small>📅 13 januari 2025 · Dusun mee lueng bintang.</small>
+  
+  <h3>Dokumentasi Kegiatan Membuat Apam</h3>
+  
+  <p>
+    Kegiatan membuat apam ini dilaksanakan sebagai bentuk kegiatan sosial dan kebersamaan di antara warga desa. 
+    Kegiatan ini bertujuan untuk memperkuat tali silaturahmi dan memperkenalkan tradisi kuliner lokal kepada generasi muda.
+      Selain itu, kegiatan ini juga dapat menjadi ajang untuk berbagi resep dan teknik pembuatan apam yang telah diwariskan secara turun-temurun di desa.
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>  
+</div>  
+
+
+
+<!-- ========== KONTAK ========== -->
+<div class="page" id="page-kontak">
+  <div class="page-hero">
+    <div class="page-hero-icon">📍</div>
+    <h1>Kontak & Lokasi</h1>
+    <p>Hubungi kami atau kunjungi Kantor Desa Sukamaju</p>
+    <div class="breadcrumb"><span onclick="showPage('dashboard')">Beranda</span> › <span>Kontak</span></div>
+  </div>
+  <div class="content-wrap">
+    <div class="content-card">
+      <h2>Informasi Kontak</h2>
+      <div class="kontak-grid">
+        <div class="kontak-item"><div class="kontak-icon">📍</div><div><div class="kontak-lbl">Alamat</div><div class="kontak-val">Reului busu,kecamatan mutiara,kabupaten pidie,ACEH</div></div></div>
+        <div class="kontak-item"><div class="kontak-icon">📞</div><div><div class="kontak-lbl">Telepon</div><div class="kontak-val">(0251) 8240-456</div></div></div>
+        <div class="kontak-item"><div class="kontak-icon">📧</div><div><div class="kontak-lbl">Email</div><div class="kontak-val">reului@gmail.com</div></div></div>
+        <div class="kontak-item"><div class="kontak-icon">🕐</div><div><div class="kontak-lbl">Jam Pelayanan</div><div class="kontak-val">Senin–Jumat: 08.00–15.00 WIB</div></div></div>
+        <div class="kontak-item"><div class="kontak-icon">📱</div><div><div class="kontak-lbl">WhatsApp</div><div class="kontak-val">+62 812-5632-0970</div></div></div>
+
+      </div>
+    </div>
+    <div class="content-card">
+      <h2>Lokasi Kantor Desa</h2>
+      <div class="map">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6052.510583187128!2d95.94698574692997!3d5.27360143307961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30409189fa3f19b7%3A0x43bd2f54361db4d!2sKantor%20keuchik%20Reului!5e1!3m2!1sid!2sid!4v1776504028011!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+  <a href="https://maps.google.com/?q=Kantor+keuchik+Reului" target="_blank">
+  📍 Buka di Google Maps
+</a>
+</div>
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Website Profil Desa Reului Busu</strong> · Kecamatan Mutiara, Kabupaten Pidie<br>
+  <span style="opacity:0.6">© 2026 Pemerintah Desa Reului Busu · Semua Hak Dilindungi</span>
+</footer>
+
+<script>
+const pageMap = {dashboard:0, sejarah:1, perangkat:2, visimisi:3, statistik:4, kegiatan:5, kontak:6};
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-item')[pageMap[id]].classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function filterKegiatan(status, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.kegiatan-list-item').forEach(item => {
+    item.style.display = (status === 'semua' || item.dataset.status === status) ? 'flex' : 'none';
+  });
+}
+</script>
+</body>
+</html>
