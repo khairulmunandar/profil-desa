@@ -21,6 +21,7 @@ nav{background:var(--hijau);position:sticky;top:0;z-index:100;box-shadow:0 2px 1
 .nav-title{color:white;font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;line-height:1.2}
 .nav-title span{display:block;font-size:0.72rem;font-weight:300;opacity:0.8;font-family:'DM Sans',sans-serif}
 .nav-menu{display:flex;gap:0}
+.nav-toggle{display:none;background:none;border:none;color:white;font-size:1.6rem;cursor:pointer;padding:16px 12px;line-height:1;}
 .nav-item{color:rgba(255,255,255,0.85);padding:18px 14px;font-size:0.82rem;font-weight:500;cursor:pointer;transition:all 0.2s;border-bottom:3px solid transparent;letter-spacing:0.01em}
 .nav-item:hover{color:white;background:rgba(255,255,255,0.08)}
 .nav-item.active{color:var(--emas-muda);border-bottom:3px solid var(--emas-muda);background:rgba(255,255,255,0.08)}
@@ -151,6 +152,42 @@ nav{background:var(--hijau);position:sticky;top:0;z-index:100;box-shadow:0 2px 1
 .kontak-lbl{font-size:0.78rem;color:var(--abu);font-weight:500}
 .kontak-val{font-size:0.92rem;color:var(--teks);margin-top:3px;font-weight:500}
 .map-placeholder{background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:12px;height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--hijau);font-size:0.9rem;border:2px dashed var(--hijau-terang);margin-top:1.2rem}
+.map{border-radius:16px;overflow:hidden;}
+.map iframe{width:100%;height:320px;border:0;display:block;}
+.map a{display:inline-block;margin-top:1rem;color:var(--hijau);font-weight:600;text-decoration:none}
+
+@media (max-width: 920px) {
+  .nav-inner{flex-direction:column;align-items:stretch;gap:1rem;padding:1rem}
+  .nav-brand{justify-content:center}
+  .nav-toggle{display:block;align-self:flex-end}
+  .nav-menu{display:none;flex-direction:column;width:100%;gap:0;border-top:1px solid rgba(255,255,255,0.12);overflow:hidden}
+  .nav-menu.open{display:flex}
+  .nav-item{flex:1 1 auto;min-width:auto;text-align:left;padding:12px 14px}
+  .hero{height:auto;padding:3rem 0}
+  .hero-content{padding:2rem 1rem}
+  .hero-title{font-size:2.4rem}
+  .hero-stats{flex-wrap:wrap;justify-content:center}
+  .photo-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:10px}
+  .photo-card:first-child{grid-column:span 2}
+  .menu-grid,.kegiatan-strip,.kontak-grid,.stat-grid,.perangkat-grid{grid-template-columns:1fr}
+  .content-wrap{padding:1.8rem 1rem}
+}
+
+@media (max-width: 600px) {
+  .nav-item{flex:1 1 100%;min-width:auto}
+  .hero-title{font-size:2rem}
+  .hero-subtitle{font-size:0.95rem;max-width:100%}
+  .hero-stats{gap:1rem}
+  .photo-grid{grid-template-columns:1fr;}
+  .photo-card:first-child{grid-column:span 1}
+  .photo-card{min-height:180px}
+  .menu-card{text-align:left}
+  .kegiatan-list-item{flex-direction:column}
+  .kegiatan-thumb{width:100%;height:160px}
+  .content-wrap{padding:1.2rem 0.9rem}
+  .section{padding:2rem 0.9rem}
+  .page-hero{padding:2rem 1rem}
+}
 
 /* FOOTER */
 footer{background:var(--hijau);color:rgba(255,255,255,0.8);text-align:center;padding:1.8rem;font-size:0.82rem}
@@ -225,6 +262,7 @@ footer strong{color:var(--emas-muda)}
 </div>
       <div class="nav-title">DESA REULUI BUSU<span>Kecamatan Mutiara · Pidie</span></div>
     </div>
+    <button class="nav-toggle" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
     <div class="nav-menu">
       <div class="nav-item active" onclick="showPage('dashboard')">🏠 Beranda</div>
       <div class="nav-item" onclick="showPage('sejarah')">📜 Sejarah</div>
@@ -391,7 +429,7 @@ Berikut adalah poin-poin penting mengenai asal-usul nama dan sejarah Busu:</p>
   <div class="page-hero">
     <div class="page-hero-icon">👥</div>
     <h1>Perangkat Desa</h1>
-    <p>Struktur pemerintahan Desa Reului Busu periode 2020–2026</p>
+    <p>Struktur pemerintahan Desa Sukamaju periode 2020–2026</p>
     <div class="breadcrumb"><span onclick="showPage('dashboard')">Beranda</span> › <span>Perangkat Desa</span></div>
   </div>
   <div class="content-wrap">
@@ -408,6 +446,7 @@ Berikut adalah poin-poin penting mengenai asal-usul nama dan sejarah Busu:</p>
           <div class="perangkat-avatar">AG</div>
           <div class="perangkat-name">Arif Gunawan</div>
           <div class="perangkat-jabatan">DUSUN</div>
+          <div class="perangkat-nip">NIP. 19800412 200501 2 003</div>
         </div>
         
         
@@ -609,9 +648,7 @@ Berikut adalah poin-poin penting mengenai asal-usul nama dan sejarah Busu:</p>
     <div class="content-card">
       <h2>Lokasi Kantor Desa</h2>
       <div class="map">
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6052.510583187128!2d95.94698574692997!3d5.27360143307961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30409189fa3f19b7%3A0x43bd2f54361db4d!2sKantor%20keuchik%20Reului!5e1!3m2!1sid!2sid!4v1776504028011!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6052.510583187128!2d95.94698574692997!3d5.27360143307961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30409189fa3f19b7%3A0x43bd2f54361db4d!2sKantor%20keuchik%20Reului!5e1!3m2!1sid!2sid!4v1776504028011!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   <a href="https://maps.google.com/?q=Kantor+keuchik+Reului" target="_blank">
   📍 Buka di Google Maps
 </a>
@@ -635,7 +672,12 @@ function showPage(id) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
   document.querySelectorAll('.nav-item')[pageMap[id]].classList.add('active');
+  document.querySelector('.nav-menu')?.classList.remove('open');
   window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function toggleMenu() {
+  document.querySelector('.nav-menu')?.classList.toggle('open');
 }
 
 function filterKegiatan(status, btn) {
